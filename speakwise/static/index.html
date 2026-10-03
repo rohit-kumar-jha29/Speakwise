@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeakWise AI – Practice. Speak. Improve.</title>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- ==================== LEFT SIDEBAR ==================== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon">🎙️</div>
+        <div class="brand-text">
+          <h1>SpeakWise AI</h1>
+          <div class="brand-tagline">Practice. Speak. Improve.</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <!-- EXACT USER SPECIFIED SIDEBAR ITEMS -->
+        <button class="nav-btn active" data-view="dashboard" id="nav-btn-dashboard">
+          <span class="nav-icon">🏠</span>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-btn" data-view="chat" id="nav-btn-chat">
+          <span class="nav-icon">💬</span>
+          <span>AI Practice</span>
+        </button>
+
+        <button class="nav-btn" data-view="roleplay" id="nav-btn-roleplay">
+          <span class="nav-icon">🎭</span>
+          <span>Role Play</span>
+          <span class="nav-badge-pill">13</span>
+        </button>
+
+        <button class="nav-btn" data-view="interview" id="nav-btn-interview">
+          <span class="nav-icon">🎤</span>
+          <span>Interview Practice</span>
+        </button>
+
+        <button class="nav-btn" data-view="grammar" id="nav-btn-grammar">
+          <span class="nav-icon">✍️</span>
+          <span>Grammar Practice</span>
+        </button>
+
+        <button class="nav-btn" data-view="vocab" id="nav-btn-vocab">
+          <span class="nav-icon">📚</span>
+          <span>Vocabulary</span>
+        </button>
+
+        <button class="nav-btn" data-view="progress" id="nav-btn-progress">
+          <span class="nav-icon">📊</span>
+          <span>Progress</span>
+        </button>
+
+        <button class="nav-btn" data-view="history" id="nav-btn-history">
+          <span class="nav-icon">🕘</span>
+          <span>Session History</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-pill" id="user-profile-trigger" title="Click to edit profile">
+          <div class="user-avatar user-avatar-display">👨‍💼</div>
+          <div class="user-info">
+            <div class="user-name user-name-display">Rohit</div>
+            <div class="user-meta user-meta-display">Intermediate • Professional English</div>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-faint);">⚙️</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==================== MAIN WORKSPACE ==================== -->
+    <main class="main-wrapper">
+      <!-- HEADER -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="menu-toggle-btn" id="btn-menu-toggle" aria-label="Toggle Menu">☰</button>
+          <div class="header-title-container">
+            <div class="header-view-title" id="header-title">AI Communication Coach</div>
+            <div class="header-subtitle" id="header-subtitle">
+              <span id="engine-status-indicator" class="engine-online-badge">🟢 AI Coach Online</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <!-- 2-Minute Practice Button -->
+          <button class="btn-quick-demo" id="btn-top-2min" title="Instant 4-turn practice demo for presentations">
+            <span>⚡</span>
+            <span>Start 2-Minute Practice</span>
+          </button>
+
+          <!-- Engine Status Pill & Key Settings -->
+          <div class="engine-status-pill" id="engine-status-pill" title="Configure AI engine or API key">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="engine-status-text">Real AI Mode</span>
+          </div>
+
+          <!-- Reset Demo Data -->
+          <button class="icon-btn" id="btn-reset-demo" title="Reset Demo Data">🔄</button>
+
+          <!-- Dark/Light Mode Toggle -->
+          <button class="icon-btn" id="btn-theme-toggle" title="Toggle Dark/Light Mode">🌓</button>
+        </div>
+      </header>
+
+      <!-- CONTENT BODY -->
+      <div class="content-area">
+        
+        <!-- ==================== VIEW 1: DASHBOARD ==================== -->
+        <div class="view-panel active" id="view-dashboard">
+          <div class="welcome-hero">
+            <div class="hero-tag">🌟 Welcome back, <span class="user-name-display">Rohit</span> 👋</div>
+            <h1 class="hero-title">Your communication journey</h1>
+            <p class="hero-explanation">
+              “An AI-powered communication coach for improving English, grammar, professional communication and interview skills through realistic conversations.”
+            </p>
+            <div class="hero-buttons">
+              <button class="btn-primary" id="btn-dash-start">💬 Start AI Practice</button>
+              <button class="btn-secondary" id="btn-dash-roleplay">🎭 Role Play</button>
+              <button class="btn-secondary" id="btn-dash-interview">🎤 Interview Practice</button>
+              <button class="btn-quick-demo" id="btn-dash-2min">⚡ Start 2-Minute Practice</button>
+            </div>
+          </div>
+
+          <!-- Core Metrics Grid -->
+          <div class="stats-overview-grid">
+            <div class="stat-metric-card">
+              <span class="stat-metric-sub">Sessions Completed</span>
+              <span class="stat-metric-val" id="dash-sessions-completed">12</span>
+              <span style="font-size:0.75rem;color:var(--success);">Active Learner</span>
+            </div>
+
+            <div class="stat-metric-card">
+              <span class="stat-metric-sub">Average Score</span>
+              <span class="stat-metric-val" id="dash-average-score">76%</span>
+              <span style="font-size:0.75rem;color:var(--primary);">Solid Competency</span>
+            </div>
+
+            <div class="stat-metric-card">
+              <span class="stat-metric-sub">Practice Time</span>
+              <span class="stat-metric-val" id="dash-practice-time">3h 42m</span>
+              <span style="font-size:0.75rem;color:var(--text-muted);">Total Speaking Time</span>
+            </div>
+
+            <div class="stat-metric-card">
+              <span class="stat-metric-sub">Current Streak</span>
+              <span class="stat-metric-val" style="color:var(--warning);" id="dash-streak">5 days 🔥</span>
+              <span style="font-size:0.75rem;color:var(--warning);">Consistent Practice</span>
+            </div>
+          </div>
+
+          <!-- Charts Row -->
+          <div class="charts-row">
+            <div class="chart-card">
+              <div class="section-subtitle">📈 Communication Score Progress</div>
+              <div style="height:260px;position:relative;">
+                <canvas id="chart-trend"></canvas>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <div class="section-subtitle">🎯 Skill Breakdown</div>
+              <div class="skill-breakdown-list">
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span>Grammar</span>
+                    <strong id="skill-grammar-val">72%</strong>
+                  </div>
+                  <div class="skill-track"><div class="skill-bar grammar" id="skill-grammar-bar" style="width: 72%;"></div></div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span>Vocabulary</span>
+                    <strong id="skill-vocab-val">81%</strong>
+                  </div>
+                  <div class="skill-track"><div class="skill-bar vocab" id="skill-vocab-bar" style="width: 81%;"></div></div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span>Clarity</span>
+                    <strong id="skill-clarity-val">78%</strong>
+                  </div>
+                  <div class="skill-track"><div class="skill-bar clarity" id="skill-clarity-bar" style="width: 78%;"></div></div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span>Tone</span>
+                    <strong id="skill-tone-val">85%</strong>
+                  </div>
+                  <div class="skill-track"><div class="skill-bar tone" id="skill-tone-bar" style="width: 85%;"></div></div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="skill-header">
+                    <span>Confidence</span>
+                    <strong id="skill-conf-val">74%</strong>
+                  </div>
+                  <div class="skill-track"><div class="skill-bar conf" id="skill-conf-bar" style="width: 74%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 2: MAIN CHAT & ROLE PLAY ==================== -->
+        <div class="view-panel" id="view-chat" style="padding:0;height:100%;">
+          <div class="chat-layout">
+            <div class="chat-main-column">
+              <!-- Banner -->
+              <div class="scenario-banner">
+                <div class="scenario-info">
+                  <div class="scenario-avatar" id="chat-scenario-avatar">🎙️</div>
+                  <div class="scenario-details">
+                    <h2>
+                      <span id="chat-scenario-title">AI Practice</span>
+                      <span class="scenario-role-badge" id="chat-scenario-role">AI Communication Coach</span>
+                    </h2>
+                    <div class="scenario-tip-pill" id="chat-scenario-tip">Speak naturally. Focus on clear sentence formation.</div>
+                  </div>
+                </div>
+                <div class="scenario-actions">
+                  <button class="btn-chat-action" id="btn-chat-feedback">✨ Get Feedback</button>
+                  <button class="btn-end-session" id="btn-end-session">End Session 🎯</button>
+                </div>
+              </div>
+
+              <!-- 2-Minute Progress Bar -->
+              <div class="demo-progress-bar-container" id="demo-progress-container" style="display:none;">
+                <span>⚡ 2-Minute Practice Progress:</span>
+                <div class="demo-progress-track">
+                  <div class="demo-progress-fill" id="demo-progress-fill"></div>
+                </div>
+                <span id="demo-turn-label">Turn 1/4</span>
+              </div>
+
+              <!-- Empty State Notification -->
+              <div id="chat-empty-state" class="chat-empty-state" style="display:none;">
+                <div style="font-size:2.5rem;margin-bottom:8px;">💬</div>
+                <h3>Start a conversation to begin practicing</h3>
+                <p>Type a message below or use the microphone button to practice spoken English.</p>
+              </div>
+
+              <!-- Messages Stream -->
+              <div class="messages-container" id="messages-container"></div>
+
+              <!-- Typing Indicator -->
+              <div class="typing-indicator" id="typing-indicator">
+                <span style="font-size:0.75rem;color:var(--text-muted);margin-right:4px;">AI Coach is typing</span>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+              </div>
+
+              <!-- Chat Input Bar -->
+              <div class="chat-input-bar">
+                <div class="input-row">
+                  <button class="mic-btn" id="btn-mic" title="Voice input (Speech to Text)">🎤</button>
+                  <textarea class="chat-textarea" id="chat-textarea" placeholder="Type your message..." rows="1"></textarea>
+                  <button class="send-btn" id="btn-send-message" title="Send message">Send</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT PANEL: LIVE PERFORMANCE FEEDBACK (DESKTOP) -->
+            <aside class="feedback-panel" id="feedback-panel">
+              <div class="feedback-header">
+                <h3><span>💡</span> LIVE PERFORMANCE</h3>
+                <span class="live-badge" id="live-badge-status">Real-time</span>
+              </div>
+
+              <div class="feedback-body">
+                <!-- Scores Card -->
+                <div class="scores-card">
+                  <div class="score-main-display">
+                    <div>
+                      <div class="score-label-big">Overall</div>
+                      <div style="font-size:0.72rem;color:var(--text-muted);">Communication Score</div>
+                    </div>
+                    <div class="score-number-big" id="feedback-overall-score">78/100</div>
+                  </div>
+
+                  <div class="score-bars-list">
+                    <div class="score-bar-item">
+                      <div class="score-bar-label">
+                        <span>Grammar</span>
+                        <span id="bar-grammar-val">8/10</span>
+                      </div>
+                      <div class="score-bar-track">
+                        <div class="score-bar-fill grammar" id="bar-grammar" style="width: 80%;"></div>
+                      </div>
+                    </div>
+
+                    <div class="score-bar-item">
+                      <div class="score-bar-label">
+                        <span>Vocabulary</span>
+                        <span id="bar-vocab-val">7/10</span>
+                      </div>
+                      <div class="score-bar-track">
+                        <div class="score-bar-fill vocab" id="bar-vocab" style="width: 70%;"></div>
+                      </div>
+                    </div>
+
+                    <div class="score-bar-item">
+                      <div class="score-bar-label">
+                        <span>Clarity</span>
+                        <span id="bar-clarity-val">8/10</span>
+                      </div>
+                      <div class="score-bar-track">
+                        <div class="score-bar-fill clarity" id="bar-clarity" style="width: 80%;"></div>
+                      </div>
+                    </div>
+
+                    <div class="score-bar-item">
+                      <div class="score-bar-label">
+                        <span>Tone</span>
+                        <span id="bar-tone-val">9/10</span>
+                      </div>
+                      <div class="score-bar-track">
+                        <div class="score-bar-fill tone" id="bar-tone" style="width: 90%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Grammar Corrections -->
+                <div class="corrections-card">
+                  <div class="section-subtitle">Grammar Corrections</div>
+                  <div id="grammar-corrections-list">
+                    <div class="diff-item">
+                      <div class="diff-wrong">❌ Original: "I have worked in this company from two years."</div>
+                      <div class="diff-correct">✅ Improved: "I have been working at this company for two years."</div>
+                      <div class="diff-note">Use "for" with a duration and "since" with a starting point.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Natural English Improvement (3 tiers) -->
+                <div class="natural-card">
+                  <div class="section-subtitle">Natural English Improvement</div>
+                  
+                  <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);margin-bottom:2px;">Your Response</div>
+                  <div class="natural-quote" id="box-user-response" style="margin-bottom:8px;">"I worked at an EdTech company."</div>
+
+                  <div style="font-size:0.75rem;font-weight:700;color:var(--secondary);margin-bottom:2px;">More Natural</div>
+                  <div class="natural-quote" id="natural-version-text" style="margin-bottom:8px;">"I spent four years working in the EdTech sector."</div>
+
+                  <div style="font-size:0.75rem;font-weight:700;color:var(--primary);margin-bottom:2px;">Professional Version</div>
+                  <div class="natural-quote" id="professional-version-text" style="border-left-color:var(--primary);">"I spearheaded product and marketing operations within a leading EdTech firm."</div>
+
+                  <div class="natural-actions" style="margin-top:8px;">
+                    <button class="btn-natural-action" id="btn-listen-natural">🔊 Listen</button>
+                    <button class="btn-natural-action" id="btn-copy-natural">📋 Copy</button>
+                  </div>
+                </div>
+
+                <!-- Tone Analysis -->
+                <div class="tone-card">
+                  <div class="section-subtitle">Tone Analysis</div>
+                  <span class="tone-badge badge-primary" id="tone-badge">Professional & Measured</span>
+                  <div class="tone-explanation" id="tone-explanation">Your delivery is polite and clear.</div>
+                  <div class="tone-suggestion" id="tone-suggestion">Instead of 'I want to know about this', try 'I would like to understand this better.'</div>
+                </div>
+
+                <!-- Vocabulary Suggestions -->
+                <div class="corrections-card">
+                  <div class="section-subtitle">Vocabulary Suggestions</div>
+                  <div id="vocab-upgrades-list">
+                    <div class="vocab-upgrade-chip">'good' → effective / valuable / impressive</div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 3: ROLE PLAY SELECTION ==================== -->
+        <div class="view-panel" id="view-roleplay">
+          <div class="scenario-catalog-header">
+            <h2>Select a Role Play Scenario</h2>
+            <p style="color:var(--text-muted);font-size:0.875rem;">Immerse yourself in 13 realistic scenarios. Choose difficulty and start role play.</p>
+          </div>
+
+          <div style="display:flex;gap:16px;align-items:center;margin-bottom:20px;flex-wrap:wrap;background:var(--bg-secondary);padding:14px 20px;border-radius:var(--radius-md);border:1px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <label style="font-size:0.85rem;font-weight:600;">Difficulty Level:</label>
+              <select id="roleplay-difficulty-select" class="form-select" style="padding:6px 12px;font-size:0.85rem;">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate" selected>Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+            <span style="font-size:0.8rem;color:var(--text-muted);">AI stays in character throughout and evaluates communication upon completion.</span>
+          </div>
+
+          <div class="scenario-cards-grid" id="roleplay-scenarios-grid"></div>
+        </div>
+
+        <!-- ==================== VIEW 4: INTERVIEW PRACTICE ==================== -->
+        <div class="view-panel" id="view-interview">
+          <div class="scenario-catalog-header">
+            <h2>Interview Practice Module</h2>
+            <p style="color:var(--text-muted);font-size:0.875rem;">Select your interview track. The AI acts as an interviewer and asks one adaptive question at a time.</p>
+          </div>
+
+          <div class="hub-grid" id="interview-tracks-grid">
+            <div class="hub-card" data-track="HR">
+              <div class="hub-card-icon">🎯</div>
+              <h3 class="hub-card-title">HR Behavioral</h3>
+              <p class="hub-card-desc">Practice answering questions about culture fit, interpersonal conflict, motivations, and work ethic.</p>
+              <div class="hub-card-footer"><span>Start HR Round →</span></div>
+            </div>
+
+            <div class="hub-card" data-track="Business Analyst">
+              <div class="hub-card-icon">📊</div>
+              <h3 class="hub-card-title">Business Analyst</h3>
+              <p class="hub-card-desc">Field questions on stakeholder management, requirements gathering, and metrics trade-offs.</p>
+              <div class="hub-card-footer"><span>Start BA Round →</span></div>
+            </div>
+
+            <div class="hub-card" data-track="Marketing">
+              <div class="hub-card-icon">📣</div>
+              <h3 class="hub-card-title">Marketing Strategy</h3>
+              <p class="hub-card-desc">Articulate campaign ROI, CAC/LTV dynamics, audience segmentation, and brand storytelling.</p>
+              <div class="hub-card-footer"><span>Start Marketing Round →</span></div>
+            </div>
+
+            <div class="hub-card" data-track="Sales">
+              <div class="hub-card-icon">🎯</div>
+              <h3 class="hub-card-title">Sales & Business Dev</h3>
+              <p class="hub-card-desc">Negotiate enterprise deals, explain objection handling, prospecting, and quota attainment.</p>
+              <div class="hub-card-footer"><span>Start Sales Round →</span></div>
+            </div>
+
+            <div class="hub-card" data-track="Data Analytics">
+              <div class="hub-card-icon">📉</div>
+              <h3 class="hub-card-title">Data Analytics</h3>
+              <p class="hub-card-desc">Explain data storytelling, anomaly detection, statistical intervals, and stakeholder presentations.</p>
+              <div class="hub-card-footer"><span>Start Data Round →</span></div>
+            </div>
+
+            <div class="hub-card" data-track="General Management">
+              <div class="hub-card-icon">🏛️</div>
+              <h3 class="hub-card-title">General Management</h3>
+              <p class="hub-card-desc">Tackle questions on organizational leadership, cross-department conflict, and strategic vision.</p>
+              <div class="hub-card-footer"><span>Start Management Round →</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 5: GRAMMAR PRACTICE ==================== -->
+        <div class="view-panel" id="view-grammar">
+          <div class="challenge-box">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="brand-badge">Grammar Practice Mode</span>
+              <span style="font-size:0.8rem;color:var(--text-muted);" id="grammar-quiz-count">Question 1 of 3</span>
+            </div>
+            
+            <h2 style="margin-top:12px;" id="grammar-quiz-question">Choose the correct sentence:</h2>
+
+            <div class="grammar-options-container" id="grammar-options-container" style="display:flex;flex-direction:column;gap:12px;margin:20px 0;">
+              <!-- Dynamically populated options -->
+            </div>
+
+            <div class="challenge-result-card" id="grammar-quiz-result" style="display:none;"></div>
+
+            <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
+              <button class="btn-primary" id="btn-next-grammar-quiz">Next Question →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 6: VOCABULARY ==================== -->
+        <div class="view-panel" id="view-vocab">
+          <div class="challenge-box">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="brand-badge">Vocabulary Mode</span>
+              <span class="difficulty-tag diff-intermediate" id="vocab-pos-display">[Verb]</span>
+            </div>
+
+            <h2 style="margin-top:10px;font-size:2rem;color:var(--secondary);" id="vocab-word-display">Persuade</h2>
+            <div style="font-size:0.95rem;margin-bottom:6px;" id="vocab-def-display">To induce someone to do or believe something through reasoning or argument.</div>
+            <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;" id="vocab-synonyms-display">Synonyms: Convince, Influence, Sway</div>
+
+            <div style="background:var(--bg-tertiary);padding:14px;border-radius:8px;border-left:4px solid var(--primary);margin-bottom:16px;">
+              <strong>Task:</strong> Create a professional sentence using the word <strong>Persuade</strong>.
+            </div>
+
+            <div class="challenge-input-area">
+              <input type="text" class="form-input" id="vocab-user-sentence" placeholder="Write your sentence here...">
+              <div style="display:flex;gap:10px;">
+                <button class="btn-primary" id="btn-eval-vocab">Evaluate Sentence</button>
+                <button class="btn-secondary" id="btn-next-vocab">Next Word →</button>
+              </div>
+            </div>
+
+            <div class="challenge-result-card" id="vocab-result-box" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 7: PROGRESS DASHBOARD ==================== -->
+        <div class="view-panel" id="view-progress">
+          <div style="margin-bottom:20px;">
+            <h2>Communication Progress Dashboard</h2>
+            <p style="color:var(--text-muted);font-size:0.875rem;">Your real-time proficiency tracking powered by SQLite persistence.</p>
+          </div>
+
+          <div class="charts-row">
+            <div class="chart-card">
+              <div class="section-subtitle">📈 Multi-Session Score Trajectory</div>
+              <div style="height:280px;position:relative;">
+                <canvas id="chart-progress-trend"></canvas>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <div class="section-subtitle">🎯 Skill Breakdown</div>
+              <div style="height:280px;position:relative;">
+                <canvas id="chart-progress-radar"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== VIEW 8: SESSION HISTORY ==================== -->
+        <div class="view-panel" id="view-history">
+          <div style="margin-bottom:20px;">
+            <h2>Session History</h2>
+            <p style="color:var(--text-muted);font-size:0.875rem;">Review all past practice sessions, conversation transcripts, scores, and coaching feedback.</p>
+          </div>
+
+          <div class="history-table-container">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Scenario</th>
+                  <th>Score</th>
+                  <th>Key Improvement Area</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- User Profile Modal -->
+  <div class="modal-overlay" id="modal-profile">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>User Profile & Learning Goals</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" id="input-profile-name" value="Rohit">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Current English Level</label>
+          <select class="form-select" id="select-profile-level">
+            <option value="Beginner">Beginner (Foundational)</option>
+            <option value="Intermediate" selected>Intermediate (Conversational)</option>
+            <option value="Advanced">Advanced (Fluency & Polish)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Primary Goal</label>
+          <select class="form-select" id="select-profile-goal">
+            <option value="Fluency">Fluency</option>
+            <option value="Grammar">Grammar</option>
+            <option value="Interview">Interview</option>
+            <option value="Professional English" selected>Professional English</option>
+            <option value="Vocabulary">Vocabulary</option>
+            <option value="Confidence">Confidence</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary modal-cancel-btn">Cancel</button>
+        <button class="btn-primary" id="btn-save-profile">Save Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Key & Engine Config Modal -->
+  <div class="modal-overlay" id="modal-api-settings">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>AI Engine & API Configuration</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:var(--bg-tertiary);padding:14px;border-radius:8px;font-size:0.85rem;line-height:1.5;">
+          <strong>Demo Mode vs Real AI Mode:</strong><br>
+          • <strong>Demo Mode (Simulated AI)</strong> runs locally without any API key, offering realistic dynamic practice.<br>
+          • <strong>Real AI Mode</strong> connects to Google Gemini or OpenAI LLMs via your environment variable (<code>AI_API_KEY</code> / <code>GEMINI_API_KEY</code>) or by entering it below.
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">API Provider</label>
+          <select class="form-select" id="select-api-provider">
+            <option value="gemini" selected>Google Gemini (gemini-1.5-flash)</option>
+            <option value="openai">OpenAI (gpt-4o-mini)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">API Key</label>
+          <input type="password" class="form-input" id="input-api-key" placeholder="Enter API key...">
+          <small style="color:var(--text-faint);font-size:0.72rem;">Stored securely on the backend; never exposed to frontend code.</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary modal-cancel-btn">Close</button>
+        <button class="btn-primary" id="btn-save-api-key">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Session Communication Report Modal -->
+  <div class="modal-overlay" id="modal-session-summary">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Communication Report 📋</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align:center;padding:10px 0;">
+          <div style="font-size:0.85rem;color:var(--text-muted);text-transform:uppercase;font-weight:600;">Overall Score</div>
+          <div style="font-size:3.2rem;font-weight:800;color:var(--primary);" id="summary-final-score">78/100</div>
+        </div>
+
+        <div class="stats-overview-grid" style="grid-template-columns:repeat(auto-fit, minmax(100px, 1fr));gap:8px;margin-bottom:14px;">
+          <div class="stat-metric-card" style="padding:8px;text-align:center;">
+            <span class="stat-metric-sub">Grammar</span>
+            <strong style="font-size:1.1rem;" id="rep-g-val">7.5/10</strong>
+          </div>
+          <div class="stat-metric-card" style="padding:8px;text-align:center;">
+            <span class="stat-metric-sub">Vocabulary</span>
+            <strong style="font-size:1.1rem;" id="rep-v-val">8/10</strong>
+          </div>
+          <div class="stat-metric-card" style="padding:8px;text-align:center;">
+            <span class="stat-metric-sub">Clarity</span>
+            <strong style="font-size:1.1rem;" id="rep-c-val">8/10</strong>
+          </div>
+          <div class="stat-metric-card" style="padding:8px;text-align:center;">
+            <span class="stat-metric-sub">Tone</span>
+            <strong style="font-size:1.1rem;" id="rep-t-val">8.5/10</strong>
+          </div>
+          <div class="stat-metric-card" style="padding:8px;text-align:center;">
+            <span class="stat-metric-sub">Confidence</span>
+            <strong style="font-size:1.1rem;" id="rep-conf-val">7/10</strong>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-subtitle">⭐ Top Strengths</div>
+          <div class="pill-list" id="summary-strengths-list"></div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="section-subtitle">🎯 Key Areas to Improve</div>
+          <div class="pill-list" id="summary-improvements-list"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary modal-cancel-btn">Close</button>
+        <button class="btn-primary" onclick="UI.closeModal('modal-session-summary');UI.switchView('dashboard');App.loadDashboard();">View Dashboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session Review Modal (From History) -->
+  <div class="modal-overlay" id="modal-review-session">
+    <div class="modal-content" style="max-width:700px;">
+      <div class="modal-header">
+        <div>
+          <h3 id="review-modal-title">Session Review</h3>
+          <div style="font-size:0.75rem;color:var(--text-muted);" id="review-modal-meta"></div>
+        </div>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="section-subtitle">Conversation Transcript</div>
+        <div id="review-modal-transcript" style="max-height:350px;overflow-y:auto;padding-right:8px;margin-bottom:14px;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary modal-cancel-btn">Close Review</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client JavaScript Modules -->
+  <script src="js/api.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

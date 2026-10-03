@@ -1,0 +1,134 @@
+{
+  "profile": {
+    "name": "Rohit",
+    "level": "Intermediate",
+    "goal": "Professional English",
+    "avatar": "👨‍💼",
+    "created_at": "2026-09-28T09:00:00Z"
+  },
+  "sessions": [
+    {
+      "id": "sess_demo_1",
+      "date": "2026-09-30 11:15",
+      "mode": "roleplay",
+      "scenario_id": "job_interview",
+      "scenario_title": "Job Interview",
+      "role": "Senior Hiring Manager (Sarah Vance)",
+      "duration_minutes": 14,
+      "turns": 5,
+      "score_overall": 68,
+      "scores": {
+        "grammar": 6.8,
+        "vocabulary": 6.5,
+        "clarity": 7.0,
+        "tone": 7.2,
+        "overall": 6.8
+      },
+      "main_mistakes": [
+        "Tense duration error: 'I am working here since two years'",
+        "Awkward phrasing: 'Can we prepone the schedule?'"
+      ],
+      "key_improvement": "Use Present Perfect Continuous for ongoing past actions; use 'move forward' instead of 'prepone'.",
+      "top_strengths": [
+        "Clear articulation of work milestones",
+        "Polite and respectful opening and closing",
+        "Strong relevant work examples"
+      ],
+      "transcript": [
+        {
+          "sender": "ai",
+          "text": "Hello Rohit, welcome to the interview. Please introduce yourself."
+        },
+        {
+          "sender": "user",
+          "text": "Hello ma'am, I am working in software sales since four years and handled clients."
+        },
+        {
+          "sender": "ai",
+          "text": "That sounds like solid foundational experience. What were your main responsibilities in sales?"
+        },
+        {
+          "sender": "user",
+          "text": "I handled customer acquisition and team management, but sometimes we prepone product demos."
+        }
+      ]
+    },
+    {
+      "id": "sess_demo_2",
+      "date": "2026-10-01 15:40",
+      "mode": "roleplay",
+      "scenario_id": "client_meeting",
+      "scenario_title": "Client Meeting",
+      "role": "Key Account Client (Elena Rostova)",
+      "duration_minutes": 18,
+      "turns": 6,
+      "score_overall": 72,
+      "scores": {
+        "grammar": 7.2,
+        "vocabulary": 7.0,
+        "clarity": 7.4,
+        "tone": 7.5,
+        "overall": 7.2
+      },
+      "main_mistakes": [
+        "Overly blunt tone: 'I want this requirement changed'",
+        "Uncountable noun mistake: 'Can you give me an advice'"
+      ],
+      "key_improvement": "Soften directives with diplomatic modals ('I would recommend that we...' or 'Could we consider...?').",
+      "top_strengths": [
+        "Assertive yet collaborative positioning",
+        "Structured responses to client budget pushback",
+        "Prompt clarification questions"
+      ],
+      "transcript": [
+        {
+          "sender": "ai",
+          "text": "Good morning Rohit. We have some reservations regarding the proposed implementation timeline. How do you propose we address this?"
+        },
+        {
+          "sender": "user",
+          "text": "I understand your worry. We can divide the project into two distinct phases to reduce risk."
+        }
+      ]
+    },
+    {
+      "id": "sess_demo_3",
+      "date": "2026-10-02 18:20",
+      "mode": "roleplay",
+      "scenario_id": "talking_to_manager",
+      "scenario_title": "Workplace Conversation",
+      "role": "Direct Manager (David Chen)",
+      "duration_minutes": 12,
+      "turns": 5,
+      "score_overall": 76,
+      "scores": {
+        "grammar": 7.8,
+        "vocabulary": 7.6,
+        "clarity": 7.8,
+        "tone": 8.0,
+        "overall": 7.6
+      },
+      "main_mistakes": [
+        "Subject-verb agreement: 'Each of the teammates have submitted'",
+        "Redundant phrasing: 'Please revert back as soon as you will check'"
+      ],
+      "key_improvement": "Remember that 'each' is singular ('has submitted'), and avoid redundant 'back' with revert.",
+      "top_strengths": [
+        "Proactive prioritization of sprint tasks",
+        "Clear timeline estimates without ambiguity",
+        "Confident and professional tone"
+      ],
+      "transcript": [
+        {
+          "sender": "ai",
+          "text": "Hey Rohit! How are things going with you this week, and what's top of mind for our agenda today?"
+        },
+        {
+          "sender": "user",
+          "text": "Hi David, things are going well. I wanted to align on sprint priorities and discuss our API deadline."
+        }
+      ]
+    }
+  ],
+  "last_updated": "2026-10-03T16:31:26.046723"
+}
